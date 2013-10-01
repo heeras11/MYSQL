@@ -1,0 +1,34 @@
+use sakila;
+
+Select customer.first_name, customer.last_name, customer.email, 
+	   address.address
+	From city
+	Left Join address on address.city_id = city.city_id 
+	Left Join customer on address.address_id = customer.address_id
+	Where address.city_id = 312
+
+use sakila;
+
+select film.title, film.description, film.release_year, 
+	   film.rating, film.special_features, film.rating,
+	   category.name
+	From film_category
+	Left Join category on category.category_id = film_category.category_id
+	Left Join film on film.film_id = film_category.film_id
+	Where category.name= "Comedy";
+
+use sakila;
+
+select film.title, film.description, film.release_year
+	From film 
+	Left Join film_actor on film.film_id = film_actor.film_id
+	where film_actor.actor_id= 5 
+	
+use sakila;
+
+select customer.first_name, customer.last_name, address.address
+	From city
+	left join address on city.city_id = address.city_id
+	left join customer on address.address_id = customer.address_id
+	left join store on customer.store_id = store.store_id
+	Where store.store_id= 1 AND (address.city_id= 1 or address.city_id= 42 or address.city_id= 312 or address.city_id=459)
